@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+	<title>My Google Maps</title>
+	<style >
+		#map{
+			height:500px;
+			width:100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="map"></div> 
+</body>
+
+	<script >
+
+	//Map options
+		function initMap(){
+			var options={
+				zoom:19,
+				center:{lat:25.650576,lng:-100.288675}
+			}
+			//new map
+			var map= new google.maps.Map(document.getElementById('map'),options);
+
+			//add marker  25.650613, -100.288954
+			var marker= new google.maps.Marker({
+				position:{lat:25.650613,lng:-100.288954},
+				map:map
+			});
+
+			var marker2= new google.maps.Marker({
+				position:{lat:25.650328,lng: -100.288621},
+				map:map,
+				icon:'/Users/maggsvisan/Documents/TEC_ISD_11/semanai/sampsite/truck.png'
+			});
+
+			var marker3= new google.maps.Marker({
+				position:{lat:25.650998,lng: -100.288549},
+				map:map,
+				icon:'/Users/maggsvisan/Documents/TEC_ISD_11/semanai/sampsite/man.png'
+			});
+
+
+			var infoWindow = new google.maps.InfoWindow({
+
+				content:'<h1> Camion1 </h1>'
+			});
+
+			marker2.addListener('click',function(){
+				infoWindow.open(map,marker2);
+			});
+
+
+			var infoWindow2 = new google.maps.InfoWindow({
+
+				content:'<h1> Operador1 </h1>'
+			});
+
+			marker3.addListener('click',function(){
+				infoWindow.open(map,marker3);
+			});
+		}
+	</script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6I3F71gZ0d9MXM9QZYXiKBaOVzh_fax8&callback=initMap">
+    </script>
+</html>
