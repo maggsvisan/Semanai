@@ -1,0 +1,62 @@
+doctype html
+html
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=no')
+    |     
+    meta(charset='utf-8')
+    | &#x9;
+    title My Google Maps
+    | &#x9;
+    style.
+      #map{
+      height:500px;
+      width:100%;
+      }
+  body
+    #map
+  | &#x9;
+  script.
+    //Map options
+    function initMap(){
+    var options={
+    zoom:20,
+    center:{lat:25.650576,lng:-100.288675}
+    }
+    //new map
+    var map= new google.maps.Map(document.getElementById('map'),options);
+    //Array of markers
+    var markers=[
+    {coords:{lat:25.650613,lng:-100.288954},
+    iconImage:'/Users/maggsvisan/Documents/TEC_ISD_11/semanai/sampsite/man.png',
+    content:'<h1> Operador1 </h1>'
+    },
+    {coords:{lat:25.650998,lng: -100.288549},
+    iconImage:'/Users/maggsvisan/Documents/TEC_ISD_11/semanai/sampsite/truck.png',
+    content:'<h1> Camión1 </h1> <ul>list1</ul>'
+    }
+    ];
+    //Loop throught markers
+    for (var i=0; i<markers.length; i++){
+    addMarker(markers[i]);
+    }
+    //Add marker function
+    function addMarker(props){
+    var marker= new google.maps.Marker({
+    position: props.coords,
+    map:map,
+    icon:props.iconImage
+    });
+    if (props.iconImage){
+    marker.setIcon(props.iconImage);
+    }
+    if (props.content){
+    var infoWindow = new google.maps.InfoWindow({content:props.content
+    });
+    marker.addListener('click',function(){
+    infoWindow.open(map,marker);
+    });
+    }
+    }
+    }
+  |     
+  script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC6I3F71gZ0d9MXM9QZYXiKBaOVzh_fax8&callback=initMap')
